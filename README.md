@@ -2,13 +2,11 @@ Base project for getting started for [Scala Day - Hacking with Kal](http://www.m
 
 
 ## Getting Started
-Get sbt setup and running
- - follow [instructions](https://github.com/harrah/xsbt/wiki/Getting-Started-Setup)
-
+ - Get sbt setup and running - follow [instructions](https://github.com/harrah/xsbt/wiki/Getting-Started-Setup)
  - git clone https://github.com/kalmanb/scala-hacking.git
  - cd scala-hacking
  - sbt
- - >eclipse with-source=true
+ - #eclipse with-source=true
  - start eclipse
  - File -> Import -> Existing Projects Into Workspace ...
  - Run the JUnit tests in eclipse
