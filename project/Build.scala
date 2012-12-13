@@ -14,7 +14,6 @@ object ScalaHacking extends Build {
       "org.slf4j" % "slf4j-api" % "1.6.4",
       
       // Akka
-      "com.typesafe.akka" % "akka" % "2.1.0-RC5",
       "com.typesafe.akka" %% "akka-actor" % "2.1.0-RC5",
       "com.typesafe.akka" %% "akka-agent" % "2.1.0-RC5",
       "com.typesafe.akka" %% "akka-cluster-experimental" % "2.1.0-RC5",
@@ -22,7 +21,6 @@ object ScalaHacking extends Build {
       "com.typesafe.akka" %% "akka-remote" % "2.1.0-RC5",
       "com.typesafe.akka" %% "akka-transactor" % "2.1.0-RC5",
       "com.typesafe.akka" %% "akka-testkit" % "2.1.0-RC5",
-//"com.typesafe.akka" %% "akka-actor-tests" % "2.1.0-RC5" % "test",
    
       // Misc for migration demo
       "com.google.guava" % "guava" % "13.0.1",
