@@ -7,7 +7,10 @@ Base project for getting started for [Scala Day - Hacking with Kal](http://www.m
  - cd scala-hacking
  - sbt
  - #eclipse with-source=true
+ - download Eclipse IDE for Java Developers (Juno, 4.2.1)
  - start eclipse
+ - install this scala ide from this update site - http://download.scala-ide.org/nightly-update-juno-master-2.10.x
+ - restart
  - File -> Import -> Existing Projects Into Workspace ...
  - Run the JUnit tests in eclipse
 
