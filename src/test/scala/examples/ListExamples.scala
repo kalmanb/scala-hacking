@@ -43,7 +43,7 @@ class ListExamples extends FunSuite {
         case Some(i) => println("Map get: " + i)
         case None => println("Map get: oh no")
       }
-      
+
       // Filter
       println("filter long: " + strings.filter(string => {
         string.contains("f") // return true/false
@@ -57,6 +57,11 @@ class ListExamples extends FunSuite {
 
       // Filter then count
       println("count if: " + strings.count(_.contains("f")))
+
+      // Simple for
+      for (i <- 0 until 10)
+        print(i)
+      println
 
       // For each
       for (string <- strings)

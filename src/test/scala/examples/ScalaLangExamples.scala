@@ -161,100 +161,100 @@ class ScalaLangExamples extends FunSuite with ShouldMatchers {
     val caseItem = CaseItem(99)
   }
 
-    test("implicit method parameters") {
-		case class Context
-		def ask(question: String)(implicit context: Context) = 42
+  test("implicit method parameters") {
+    case class Context
+    def ask(question: String)(implicit context: Context) = 42
 
-		implicit val context = Context()
-		ask("my question") should be(42)
-	}
+    implicit val context = Context()
+    ask("my question") should be(42)
+  }
 
-	// just an example, this would be a bad idea
-	// see also scala.collections.JavaConversions._
-	test("implicit conversions") {
-		implicit def javaIntToScalaString(in: Integer): String = in.toString()
-		val javaInteger = new Integer(123)
+  // just an example, this would be a bad idea
+  // see also scala.collections.JavaConversions._
+  test("implicit conversions") {
+    implicit def javaIntToScalaString(in: Integer): String = in.toString()
+    val javaInteger = new Integer(123)
 
-		def onlyTakesStrings(in: String) {}
-		onlyTakesStrings(javaInteger) // automagically converted
-	}
+    def onlyTakesStrings(in: String) {}
+    onlyTakesStrings(javaInteger) // automagically converted
+  }
 
-	test("recursion without tailrec") {
-		def factorial(n: BigInt): BigInt =
-			if (n == 1) 1
-			else n * factorial(n - 1)
+  test("recursion without tailrec") {
+    def factorial(n: BigInt): BigInt =
+      if (n == 1) 1
+      else n * factorial(n - 1)
 
-		factorial(5) should be(120)
-		//		println(factorial(10000)) //uncomment to get StackOverflowError
-	}
+    factorial(5) should be(120)
+    //		println(factorial(10000)) //uncomment to get StackOverflowError
+  }
 
-	test("recursion with tailrec") {
-		@tailrec def factorial(n: BigInt, accu: BigInt = 1): BigInt =
-			if (n == 1) accu
-			else factorial(n - 1, accu * n)
+  test("recursion with tailrec") {
+    @tailrec def factorial(n: BigInt, accu: BigInt = 1): BigInt =
+      if (n == 1) accu
+      else factorial(n - 1, accu * n)
 
-		factorial(5) should be(120)
-		println(factorial(10000)) //number with 35k digits ;)
-	}
+    factorial(5) should be(120)
+    println(factorial(10000)) //number with 35k digits ;)
+  }
 
-	test("closures 1") {
-		def multiplyBy(factor: Double) = (x: Double) => factor * x
-		// this method returns (Double => Double)
-		val triple = multiplyBy(3)
-		val half = multiplyBy(0.5)
+  test("closures 1") {
+    def multiplyBy(factor: Double) = (x: Double) => factor * x
+    // this method returns (Double => Double)
+    val triple = multiplyBy(3)
+    val half = multiplyBy(0.5)
 
-		triple(14) should be(42)
-		half(14) should be(7)
-	}
+    triple(14) should be(42)
+    half(14) should be(7)
+  }
 
-	test("closures 2") {
-		def multiplyBy(factor: Double, map: (Double) => Double) = (x: Double) => map(factor * x)
+  test("closures 2") {
+    def multiplyBy(factor: Double, map: (Double) => Double) = (x: Double) => map(factor * x)
 
-		val triplePlusTwo = multiplyBy(3, (d: Double) => d + 2)
-		val halfMinusTwo = multiplyBy(0.5, (d: Double) => d - 2)
+    val triplePlusTwo = multiplyBy(3, (d: Double) => d + 2)
+    val halfMinusTwo = multiplyBy(0.5, (d: Double) => d - 2)
 
-		triplePlusTwo(14) should be(44)
-		halfMinusTwo(14) should be(5)
-	}
+    triplePlusTwo(14) should be(44)
+    halfMinusTwo(14) should be(5)
+  }
 
-	test("traits can contain implementation") {
-		trait T {
-			def answer = 42
-		}
-		class C extends T
-		new C().answer should be(42)
-	}
+  test("traits can contain implementation") {
+    trait T {
+      def answer = 42
+    }
+    class C extends T
+    new C().answer should be(42)
+  }
 
-	test("traits can be abstract") {
-		trait T {
-			def answer: Int
-		}
-		trait TImpl extends T {
-			override def answer = 42
-		}
+  test("traits can be abstract") {
+    trait T {
+      def answer: Int
+    }
+    trait TImpl extends T {
+      override def answer = 42
+    }
 
-		abstract class C extends T
-		val instance = new C with TImpl
-		instance.answer should be(42)
-		// Notice that there could be different implementations of T!
+    abstract class C extends T
+    val instance = new C with TImpl
+    instance.answer should be(42)
+    // Notice that there could be different implementations of T!
 
-		//advanced: self types
-		class C2 { this: T => }
-		val instance2 = new C2 with TImpl
-		instance2.answer should be(42)
-	}
+    //advanced: self types
+    class C2 { this: T => }
+    val instance2 = new C2 with TImpl
+    instance2.answer should be(42)
+  }
 
-	test("traits can be used for multiple inheritance") {
-		trait T1 {
-			def answer = 42
-		}
-		trait T2 {
-			def somethingElse = 43
-		}
-		class C extends T1 with T2
+  test("traits can be used for multiple inheritance") {
+    trait T1 {
+      def answer = 42
+    }
+    trait T2 {
+      def somethingElse = 43
+    }
+    class C extends T1 with T2
 
-		val instance = new C
-		instance.answer should be(42)
-		instance.somethingElse should be(43)
-	}
+    val instance = new C
+    instance.answer should be(42)
+    instance.somethingElse should be(43)
+  }
 }
