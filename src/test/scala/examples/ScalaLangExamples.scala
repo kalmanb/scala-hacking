@@ -170,4 +170,24 @@ class ScalaLangExamples extends FunSuite with ShouldMatchers {
 		factorial(5) should be(120)
 		println(factorial(10000)) //number with 35k digits ;)
 	}
+
+	test("closures 1") {
+		def multiplyBy(factor: Double) = (x: Double) => factor * x
+		// this method returns (Double => Double)
+		val triple = multiplyBy(3)
+		val half = multiplyBy(0.5)
+
+		triple(14) should be(42)
+		half(14) should be(7)
+	}
+
+	test("closures 2") {
+		def multiplyBy(factor: Double, map: (Double) => Double) = (x: Double) => map(factor * x)
+
+		val triplePlusTwo = multiplyBy(3, (d: Double) => d + 2)
+		val halfMinusTwo = multiplyBy(0.5, (d: Double) => d - 2)
+
+		triplePlusTwo(14) should be(44)
+		halfMinusTwo(14) should be(5)
+	}
 }
