@@ -16,7 +16,9 @@ Base project for getting started for [Scala Day - Hacking with Kal](http://www.m
 
 
 ## Stuff to play with
+ - Download [Scala Refcard](http://refcardz.dzone.com/refcardz/scala)
  - examples/ScalaLangExamples.scala - variable, functions etc
  - examples/ScalaTestSpecExamples.scala - Scalatest with Specifications
  - examples/ScalaTestSuiteExamples.scala - Scalatest Suite
+ - examples/ListExamples.scala - Collections
  - akka/AkkaExamples.scala - Calculate Pi with Akka Actors
