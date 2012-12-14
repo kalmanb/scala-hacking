@@ -72,7 +72,7 @@ class ScalaLangExamples extends FunSuite {
       // try to read file
       badTry = "..."
     } catch {
-      case e => e.printStackTrace
+      case e: Throwable => e.printStackTrace
     }
     println(badTry)
 
@@ -141,5 +141,31 @@ class ScalaLangExamples extends FunSuite {
     // Better (val's not vars)(case class)
     case class ScalaPersonVals(val firstName: String, val lastName: String)
     println(ScalaPersonVals("kal", "bek"))
+  }
+
+  test("static classes - objects") {
+    object SomeUtil {
+      def add(i: Int, j: Int) = i + j
+    }
+    import SomeUtil._
+    assert(add(1, 2) === 3)
+  }
+
+  test("companion objects") {
+    class Item(price: Int)
+    object Item { // companion = same name
+      def apply(price: Int) = new Item(price)
+      def apply(price: Integer) = new Item(price.intValue)
+    }
+    // Old way
+    val old = new Item(99)
+
+    // With Apply Method
+    val withApply = Item(99)
+    val withJInt = Item(new Integer(99))
+
+    // Automatically done with case class
+    case class CaseItem(price: Int)
+    val caseItem = CaseItem(99)
   }
 }
