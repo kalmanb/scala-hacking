@@ -6,7 +6,7 @@ Base project for getting started for [Scala Day - Hacking with Kal](http://www.m
  - git clone https://github.com/kalmanb/scala-hacking.git
  - cd scala-hacking
  - sbt
- - #eclipse with-source=true
+ - eclipse with-source=true
  - download Eclipse IDE for Java Developers (Juno, 4.2.1)
  - start eclipse
  - install this scala ide from this update site - http://download.scala-ide.org/nightly-update-juno-master-2.10.x
