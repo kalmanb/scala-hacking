@@ -6,6 +6,7 @@ import org.scalatest.FunSuite
 import scala.beans.BeanProperty
 import scala.tools.util.Javap
 import org.scalatest.matchers.ShouldMatchers
+import scala.annotation.tailrec
 
 @RunWith(classOf[JUnitRunner])
 class ScalaLangExamples extends FunSuite with ShouldMatchers {
@@ -150,5 +151,23 @@ class ScalaLangExamples extends FunSuite with ShouldMatchers {
 
 		def onlyTakesStrings(in: String) {}
 		onlyTakesStrings(javaInteger) // automagically converted
+	}
+
+	test("recursion without tailrec") {
+		def factorial(n: BigInt): BigInt =
+			if (n == 1) 1
+			else n * factorial(n - 1)
+
+		factorial(5) should be(120)
+		//		println(factorial(10000)) //uncomment to get StackOverflowError
+	}
+
+	test("recursion with tailrec") {
+		def factorial(n: BigInt, accu: BigInt = 1): BigInt =
+			if (n == 1) accu
+			else factorial(n - 1, accu * n)
+
+		factorial(5) should be(120)
+		println(factorial(10000)) //number with 35k digits ;)
 	}
 }
