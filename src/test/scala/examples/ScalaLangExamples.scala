@@ -163,7 +163,7 @@ class ScalaLangExamples extends FunSuite with ShouldMatchers {
 	}
 
 	test("recursion with tailrec") {
-		def factorial(n: BigInt, accu: BigInt = 1): BigInt =
+		@tailrec def factorial(n: BigInt, accu: BigInt = 1): BigInt =
 			if (n == 1) accu
 			else factorial(n - 1, accu * n)
 
@@ -189,5 +189,46 @@ class ScalaLangExamples extends FunSuite with ShouldMatchers {
 
 		triplePlusTwo(14) should be(44)
 		halfMinusTwo(14) should be(5)
+	}
+
+	test("traits can contain implementation") {
+		trait T {
+			def answer = 42
+		}
+		class C extends T
+		new C().answer should be(42)
+	}
+
+	test("traits can be abstract") {
+		trait T {
+			def answer: Int
+		}
+		trait TImpl extends T {
+			override def answer = 42
+		}
+
+		abstract class C extends T
+		val instance = new C with TImpl
+		instance.answer should be(42)
+		// Notice that there could be different implementations of T!
+
+		//advanced: self types
+		class C2 { this: T => }
+		val instance2 = new C2 with TImpl
+		instance2.answer should be(42)
+	}
+
+	test("traits can be used for multiple inheritance") {
+		trait T1 {
+			def answer = 42
+		}
+		trait T2 {
+			def somethingElse = 43
+		}
+		class C extends T1 with T2
+
+		val instance = new C
+		instance.answer should be(42)
+		instance.somethingElse should be(43)
 	}
 }
