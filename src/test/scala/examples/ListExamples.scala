@@ -4,7 +4,6 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.FunSuite
 
-@RunWith(classOf[JUnitRunner])
 class ListExamples extends FunSuite {
 
   test("collections") {
@@ -30,6 +29,8 @@ class ListExamples extends FunSuite {
   trait InitLists {
     val strings = List("one", "two", "three", "four", "five")
     val numbers = List(1, 2, 3, 4, 5)
+    val to = (0 to 10)
+    val until = (0 until 10)
     val map = Map(("one", 1), ("two", 2), ("three", 3), ("four", 2), ("five", 5))
   }
 
@@ -38,7 +39,7 @@ class ListExamples extends FunSuite {
       // Getting
       println("first element: " + strings(0))
 
-      // Map get
+      // Map get - returns Option
       map.get("can't find") match {
         case Some(i) => println("Map get: " + i)
         case None => println("Map get: oh no")

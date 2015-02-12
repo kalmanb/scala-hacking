@@ -9,7 +9,6 @@ import akka.actor.ActorSystem
 import org.scalatest.junit.JUnitRunner
 
 /** Taken from https://github.com/typesafehub/akka-first-tutorial-scala.g8 */
-@RunWith(classOf[JUnitRunner])
 class AkkaExamples extends WordSpec with MustMatchers with BeforeAndAfterAll {
 
   implicit val system = ActorSystem()

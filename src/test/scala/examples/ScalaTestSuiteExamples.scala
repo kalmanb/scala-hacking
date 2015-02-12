@@ -5,7 +5,6 @@ import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.matchers.ShouldMatchers
 
-@RunWith(classOf[JUnitRunner])
 class ScalaTestSuiteExamples extends FunSuite with ShouldMatchers {
 
   test("description goes here") {
